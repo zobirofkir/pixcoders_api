@@ -29,7 +29,7 @@ class PortfolioPolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        return $user->hasRole('admin');
     }
 
     /**
@@ -37,7 +37,7 @@ class PortfolioPolicy
      */
     public function update(User $user, Portfolio $portfolio): bool
     {
-        return false;
+        return $user->hasRole('admin');
     }
 
     /**
@@ -45,7 +45,7 @@ class PortfolioPolicy
      */
     public function delete(User $user, Portfolio $portfolio): bool
     {
-        return false;
+        return $user->hasRole('delete');
     }
 
     /**
