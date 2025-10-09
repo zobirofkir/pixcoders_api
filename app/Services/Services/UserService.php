@@ -13,7 +13,7 @@ class UserService implements UserConstructor
      */
     public function index()
     {
-        //
+        return 
     }
 
     /**
