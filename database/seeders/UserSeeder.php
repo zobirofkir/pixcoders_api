@@ -3,8 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Enums\RolesEnum;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -13,10 +14,13 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create([
+        $admin = User::create([
             "name" => "Pix Coders",
             "email" => "admin@pixcoders.com",
-            "password" => "pixcoders123@@@"
+            "password" => "pixcoders123@@@",
+            "role" => "admin"
         ]);
+
+        $admin->assignRole(RolesEnum::ADMIN->value);
     }
 }
