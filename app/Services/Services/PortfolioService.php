@@ -7,6 +7,7 @@ use App\Http\Resources\PortfolioResource;
 use App\Models\Portfolio;
 use App\Models\User;
 use App\Services\Constructors\PortfolioConstructor;
+use Illuminate\Support\Facades\Auth;
 
 class PortfolioService implements PortfolioConstructor
 {
@@ -32,7 +33,12 @@ class PortfolioService implements PortfolioConstructor
         }
         
         return PortfolioResource::make(
-            Portfolio::create($portfolio)
+            Portfolio::create(
+                array_merge(
+                    ["user_id" => Auth::user()->id],
+                    $portfolio
+                )
+            )
         );
     }
 
