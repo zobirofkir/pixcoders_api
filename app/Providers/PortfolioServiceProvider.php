@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\Services\PortfolioService;
 use Illuminate\Support\ServiceProvider;
 
 class PortfolioServiceProvider extends ServiceProvider
@@ -11,7 +12,9 @@ class PortfolioServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind("PortfolioService", function() {
+            return new PortfolioService();
+        });
     }
 
     /**
