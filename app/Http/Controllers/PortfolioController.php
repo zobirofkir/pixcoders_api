@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PortfolioRequest;
 use App\Models\User;
+use App\Services\Facades\PortfolioFacade;
 use Illuminate\Http\Request;
 
 class PortfolioController extends Controller
@@ -13,7 +14,7 @@ class PortfolioController extends Controller
      */
     public function index()
     {
-        //
+        return PortfolioFacade::index();
     }
 
     /**
@@ -21,7 +22,7 @@ class PortfolioController extends Controller
      */
     public function store(PortfolioRequest $request)
     {
-        //
+        return PortfolioFacade::store($request);
     }
 
     /**
@@ -29,7 +30,7 @@ class PortfolioController extends Controller
      */
     public function show(User $user)
     {
-        //
+        return PortfolioFacade::show($user);
     }
 
     /**
@@ -37,7 +38,7 @@ class PortfolioController extends Controller
      */
     public function update(PortfolioRequest $request, User $user)
     {
-        //
+        return PortfolioFacade::update($request , $user);
     }
 
     /**
@@ -45,6 +46,6 @@ class PortfolioController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        return PortfolioFacade::destroy($user);
     }
 }
