@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PortfolioRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PortfolioController extends Controller
@@ -17,7 +19,7 @@ class PortfolioController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PortfolioRequest $request)
     {
         //
     }
@@ -25,7 +27,7 @@ class PortfolioController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(User $user)
     {
         //
     }
@@ -33,7 +35,7 @@ class PortfolioController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(PortfolioRequest $request, User $user)
     {
         //
     }
@@ -41,7 +43,7 @@ class PortfolioController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $user)
     {
         //
     }
