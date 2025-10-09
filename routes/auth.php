@@ -7,4 +7,9 @@ use Illuminate\Support\Facades\Route;
 /**
  * User Routes
  */
-Route::apiResource('users', UserController::class);
+Route::apiResource('users', UserController::class)->except(['update']);
+
+/**
+ * Update Route
+ */
+Route::post('users/{user}', [UserController::class, 'update']);
