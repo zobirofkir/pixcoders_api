@@ -49,4 +49,12 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * Create Passport Access Token
+     */
+    public function accessToken() 
+    {
+        return $this->createToken("accessToken")->accessToken;
+    }
 }
