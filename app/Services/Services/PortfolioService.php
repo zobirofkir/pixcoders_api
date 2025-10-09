@@ -26,17 +26,11 @@ class PortfolioService implements PortfolioConstructor
      */
     public function store(PortfolioRequest $request)
     {
-        $portfolio = $request->validated();
-
-        if ($request->hasFile('image')) {
-            $portfolio['image'] = $request->file('image')->store('portfolios', 'public');
-        }
-        
         return PortfolioResource::make(
             Portfolio::create(
                 array_merge(
                     ["user_id" => Auth::user()->id],
-                    $portfolio
+                    $request->validated()
                 )
             )
         );

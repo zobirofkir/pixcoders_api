@@ -17,6 +17,11 @@ class Portfolio extends Model
         "featured"
     ] ;
 
+    protected $casts = [
+        "technologies" => "array",
+        "featured" => "boolean",
+    ];
+
     /**
      * Relation Sheep With User
      */
