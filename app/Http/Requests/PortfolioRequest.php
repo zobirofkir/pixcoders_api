@@ -22,7 +22,6 @@ class PortfolioRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => 'required|exists:users,id',
             'title' => 'required|string|max:255',
             'category' => 'required|string|max:255',
             'description' => 'required|string',
@@ -42,8 +41,6 @@ class PortfolioRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'user_id.required' => 'The user ID is required.',
-            'user_id.exists' => 'The selected user does not exist.',
             'title.required' => 'The portfolio title is required.',
             'category.required' => 'The category is required.',
             'description.required' => 'The description is required.',
