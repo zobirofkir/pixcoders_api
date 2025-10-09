@@ -3,6 +3,7 @@
 namespace App\Services\Services;
 
 use App\Http\Requests\UserRequest;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Services\Constructors\UserConstructor;
 
@@ -13,7 +14,9 @@ class UserService implements UserConstructor
      */
     public function index()
     {
-        return 
+        return UserResource::collection(
+            User::paginate(10)
+        );
     }
 
     /**
@@ -21,7 +24,11 @@ class UserService implements UserConstructor
      */
     public function store(UserRequest $request)
     {
-        //
+        return UserResource::make(
+            User::create(
+                $request->validated()
+            )
+        );
     }
 
     /**
@@ -29,7 +36,9 @@ class UserService implements UserConstructor
      */
     public function show(User $user)
     {
-        //
+        return UserResource::make(
+            $user
+        );
     }
 
     /**
@@ -37,7 +46,8 @@ class UserService implements UserConstructor
      */
     public function update(UserRequest $request, User $user)
     {
-        //
+        $user->update($request->validated());
+        return UserResource::make($user->refresh());
     }
 
     /**
@@ -45,6 +55,6 @@ class UserService implements UserConstructor
      */
     public function destroy(User $user)
     {
-        //
+        return $user->delete();
     }
 }
