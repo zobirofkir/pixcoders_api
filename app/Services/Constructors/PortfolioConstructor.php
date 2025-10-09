@@ -3,6 +3,7 @@
 namespace App\Services\Constructors;
 
 use App\Http\Requests\PortfolioRequest;
+use App\Models\Portfolio;
 use App\Models\User;
 
 interface PortfolioConstructor
@@ -20,16 +21,16 @@ interface PortfolioConstructor
     /**
      * Display the specified resource.
      */
-    public function show(User $user);
+    public function show(Portfolio $portfolio);
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(PortfolioRequest $request, User $user);
+    public function update(PortfolioRequest $request, Portfolio $portfolio);
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user);
+    public function destroy(Portfolio $portfolio);
 
 }

@@ -5,7 +5,6 @@ namespace App\Services\Services;
 use App\Http\Requests\PortfolioRequest;
 use App\Http\Resources\PortfolioResource;
 use App\Models\Portfolio;
-use App\Models\User;
 use App\Services\Constructors\PortfolioConstructor;
 use Illuminate\Support\Facades\Auth;
 
@@ -39,7 +38,7 @@ class PortfolioService implements PortfolioConstructor
     /**
      * Display the specified resource.
      */
-    public function show(User $user)
+    public function show(Portfolio $portfolio)
     {
         //
     }
@@ -47,7 +46,7 @@ class PortfolioService implements PortfolioConstructor
     /**
      * Update the specified resource in storage.
      */
-    public function update(PortfolioRequest $request, User $user)
+    public function update(PortfolioRequest $request, Portfolio $portfolio)
     {
         //
     }
@@ -55,7 +54,7 @@ class PortfolioService implements PortfolioConstructor
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
+    public function destroy(Portfolio $portfolio)
     {
         //
     }
