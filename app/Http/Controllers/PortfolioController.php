@@ -3,12 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PortfolioRequest;
-use App\Models\User;
+use App\Models\Portfolio;
 use App\Services\Facades\PortfolioFacade;
-use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class PortfolioController extends Controller
 {
+
+    /**
+     * Enable this authorize
+     */
+    use AuthorizesRequests;
+
     /**
      * Display a listing of the resource.
      */
@@ -22,30 +28,36 @@ class PortfolioController extends Controller
      */
     public function store(PortfolioRequest $request)
     {
+        $this->authorize('create', Portfolio::class);
+
         return PortfolioFacade::store($request);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(User $user)
+    public function show(Portfolio $portfolio)
     {
-        return PortfolioFacade::show($user);
+        return PortfolioFacade::show($portfolio);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(PortfolioRequest $request, User $user)
+    public function update(PortfolioRequest $request, Portfolio $portfolio)
     {
-        return PortfolioFacade::update($request , $user);
+        $this->authorize('update', $portfolio);
+
+        return PortfolioFacade::update($request , $portfolio);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
+    public function destroy(Portfolio $portfolio)
     {
-        return PortfolioFacade::destroy($user);
+        $this->authorize('delete', $portfolio);
+
+        return PortfolioFacade::destroy($portfolio);
     }
 }
