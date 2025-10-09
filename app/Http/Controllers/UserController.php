@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
 use App\Models\User;
+use App\Services\Facades\UserFacade;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -13,7 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return UserFacade::index();
     }
 
     /**
@@ -21,7 +22,7 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        //
+        return UserFacade::store($request);
     }
 
     /**
@@ -29,7 +30,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        return UserFacade::show($user);
     }
 
     /**
@@ -37,7 +38,7 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, User $user)
     {
-        //
+        return UserFacade::update($request , $user);
     }
 
     /**
@@ -45,6 +46,6 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        return UserFacade::destroy($user);
     }
 }
