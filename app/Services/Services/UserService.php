@@ -6,6 +6,7 @@ use App\Http\Requests\UserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Services\Constructors\UserConstructor;
+use Illuminate\Support\Facades\Storage;
 
 class UserService implements UserConstructor
 {
@@ -24,13 +25,17 @@ class UserService implements UserConstructor
      */
     public function store(UserRequest $request)
     {
-        return UserResource::make(
-            User::create(
-                $request->validated()
-            )
-        );
-    }
+        $data = $request->validated();
 
+        if ($request->hasFile('avatar')) {
+            $data['avatar'] = $request->file('avatar')->store('users', 'public');
+        }
+
+        $data['password'] = bcrypt($data['password']);
+        
+        return User::create($data);
+    }
+    
     /**
      * Display the specified resource.
      */
@@ -46,7 +51,21 @@ class UserService implements UserConstructor
      */
     public function update(UserRequest $request, User $user)
     {
-        $user->update($request->validated());
+        $data = $request->validated();
+
+        if ($request->hasFile('avatar')) {
+            if ($user->avatar) {
+                Storage::disk('public')->delete($user->avatar);
+            }
+            $data['avatar'] = $request->file('avatar')->store('users', 'public');
+        } elseif (isset($data['avatar']) && $data['avatar'] === 'null') {
+            if ($user->avatar) {
+                Storage::disk('public')->delete($user->avatar);
+                $data['avatar'] = null;
+            }
+        }
+
+        $user->update($data);
         return UserResource::make($user->refresh());
     }
 
