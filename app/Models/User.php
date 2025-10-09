@@ -57,4 +57,12 @@ class User extends Authenticatable
     {
         return $this->createToken("accessToken")->accessToken;
     }
+
+    /**
+     * Relation Sheep With User
+     */
+    public function portfolios()
+    {
+        return $this->hasMany(Portfolio::class);
+    }
 }

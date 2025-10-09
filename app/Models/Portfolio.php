@@ -16,4 +16,12 @@ class Portfolio extends Model
         "link",
         "featured"
     ] ;
+
+    /**
+     * Relation Sheep With User
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
