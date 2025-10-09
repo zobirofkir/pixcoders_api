@@ -33,7 +33,9 @@ class UserService implements UserConstructor
 
         $data['password'] = bcrypt($data['password']);
         
-        return User::create($data);
+        return UserResource::make(
+            User::create($data)
+        );
     }
     
     /**

@@ -3,6 +3,8 @@
 namespace App\Services\Services;
 
 use App\Http\Requests\PortfolioRequest;
+use App\Http\Resources\PortfolioResource;
+use App\Models\Portfolio;
 use App\Models\User;
 use App\Services\Constructors\PortfolioConstructor;
 
@@ -13,7 +15,9 @@ class PortfolioService implements PortfolioConstructor
      */
     public function index()
     {
-        //
+        return PortfolioResource::collection(
+            Portfolio::paginate(10)
+        );
     }
 
     /**
@@ -21,7 +25,13 @@ class PortfolioService implements PortfolioConstructor
      */
     public function store(PortfolioRequest $request)
     {
-        //
+        $portfolio = $request->validated();
+
+        if ($request->hasFile('image')) {
+            $portfolio['image'] = $request->file('image')->store('portfolios', 'public');
+        }
+        
+        return PortfolioResource::create($portfolio);
     }
 
     /**
