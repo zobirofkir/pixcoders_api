@@ -5,10 +5,17 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
 use App\Services\Facades\UserFacade;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+
+    /**
+     * enable this authorize
+     */
+    use AuthorizesRequests;
+
     /**
      * Display a listing of the resource.
      */
@@ -22,6 +29,8 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
+        $this->authorize('create', User::class);
+
         return UserFacade::store($request);
     }
 
@@ -38,7 +47,9 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, User $user)
     {
-        return UserFacade::update($request , $user);
+        $this->authorize('update', $user);
+
+        return UserFacade::update($request, $user);
     }
 
     /**
@@ -46,6 +57,8 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        $this->authorize('delete', $user);
+
         return UserFacade::destroy($user);
     }
 }
