@@ -31,7 +31,9 @@ class PortfolioService implements PortfolioConstructor
             $portfolio['image'] = $request->file('image')->store('portfolios', 'public');
         }
         
-        return PortfolioResource::create($portfolio);
+        return PortfolioResource::make(
+            Portfolio::create($portfolio)
+        );
     }
 
     /**
