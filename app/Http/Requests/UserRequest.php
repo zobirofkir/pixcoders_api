@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\RolesEnum;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Enum;
 
 class UserRequest extends FormRequest
 {
@@ -25,7 +27,7 @@ class UserRequest extends FormRequest
             "name" => "required|string|max:255",
             "email" => "required|email|unique:users,email",
             "password" => "required|string|min:8|confirmed",
-            "role" => "required|in:admin,user",
+            "role" => ["required", new Enum(RolesEnum::class)],
             "avatar" => "nullable|image|mimes:jpg,jpeg,png,webp|max:2048",
         ];
     }
