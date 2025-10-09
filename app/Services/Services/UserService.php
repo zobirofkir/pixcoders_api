@@ -8,7 +8,7 @@ use App\Services\Constructors\UserConstructor;
 
 class UserService implements UserConstructor
 {
-        /**
+    /**
      * Display a listing of the resource.
      */
     public function index()
