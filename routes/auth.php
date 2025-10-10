@@ -19,3 +19,8 @@ Route::post('users/{user}', [UserController::class, 'update']);
  * Portfolio Routes
  */
 Route::apiResource('portfolios', PortfolioController::class)->except(['update']);
+
+/**
+ * Update Portfolio Route
+ */
+Route::post('portfolios/{portfolio}' , [PortfolioController::class, "update"]);
