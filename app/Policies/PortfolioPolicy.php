@@ -45,7 +45,7 @@ class PortfolioPolicy
      */
     public function delete(User $user, Portfolio $portfolio): bool
     {
-        return $user->hasRole('delete');
+        return $user->hasRole('admin');
     }
 
     /**

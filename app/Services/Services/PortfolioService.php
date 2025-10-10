@@ -44,7 +44,7 @@ class PortfolioService implements PortfolioConstructor
      */
     public function show(Portfolio $portfolio)
     {
-        //
+        return PortfolioResource::make($portfolio);
     }
 
     /**
@@ -60,6 +60,6 @@ class PortfolioService implements PortfolioConstructor
      */
     public function destroy(Portfolio $portfolio)
     {
-        //
+        return $portfolio->delete();
     }
 }
