@@ -20,8 +20,8 @@ class AuthUserController extends Controller
     /**
      * Logout Current Auth User
      */
-    public function logout(User $user) : bool
+    public function logout() : bool
     {
-        return AuthUserFacade::logout($user);
+        return AuthUserFacade::logout();
     }
 }
