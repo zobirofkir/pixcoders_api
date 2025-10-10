@@ -4,6 +4,7 @@ namespace App\Services\Services;
 
 use App\Http\Requests\PortfolioRequest;
 use App\Http\Resources\PortfolioResource;
+use App\Http\Resources\UserResource;
 use App\Models\Portfolio;
 use App\Services\Constructors\PortfolioConstructor;
 use Illuminate\Support\Facades\Auth;
@@ -52,7 +53,15 @@ class PortfolioService implements PortfolioConstructor
      */
     public function update(PortfolioRequest $request, Portfolio $portfolio)
     {
-        //
+        $data = $request->validated();
+
+        if (isset($data['technologies']) && is_array($data['technologies'])) {
+            $data['technologies'] = json_encode($data['technologies']);
+        }
+
+        $portfolio->update($data);
+
+        return new PortfolioResource($portfolio->refresh());
     }
 
     /**
