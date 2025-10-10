@@ -30,3 +30,8 @@ Route::post('portfolios/{portfolio}' , [PortfolioController::class, "update"]);
  * Get Current Auth User
  */
 Route::get('me', [AuthUserController::class, 'me']);
+
+/**
+ * Logout Current Auth User
+ */
+Route::post('logout', [AuthUserController::class, 'logout']);
