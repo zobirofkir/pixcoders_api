@@ -25,14 +25,18 @@ class PortfolioService implements PortfolioConstructor
      */
     public function store(PortfolioRequest $request)
     {
-        return PortfolioResource::make(
-            Portfolio::create(
-                array_merge(
-                    ["user_id" => Auth::user()->id],
-                    $request->validated()
-                )
-            )
+        $data = array_merge(
+            ['user_id' => Auth::id()],
+            $request->validated()
         );
+
+        if (isset($data['technologies']) && is_array($data['technologies'])) {
+            $data['technologies'] = json_encode($data['technologies']);
+        }
+
+        $portfolio = Portfolio::create($data);
+
+        return PortfolioResource::make($portfolio);
     }
 
     /**
