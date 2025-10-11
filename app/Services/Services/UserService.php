@@ -4,9 +4,11 @@ namespace App\Services\Services;
 
 use App\Http\Requests\UserRequest;
 use App\Http\Resources\UserResource;
+use App\Mail\UserCreatedMail;
 use App\Models\User;
 use App\Services\Constructors\UserConstructor;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -41,10 +43,13 @@ class UserService implements UserConstructor
 
         $user = User::create($data);
 
+        Mail::to($user->email)->send(new UserCreatedMail($user, $generatedPassword));
+
         return UserResource::make($user)->additional([
             'generated_password' => $generatedPassword,
         ]);
-    }        
+    }
+
     /**
      * Display the specified resource.
      */
