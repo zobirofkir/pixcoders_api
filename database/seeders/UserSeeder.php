@@ -18,7 +18,16 @@ class UserSeeder extends Seeder
             "name" => "Pix Coders",
             "email" => "admin@pixcoders.com",
             "password" => "pixcoders123@@@",
-            "role" => "admin"
+            "role" => RolesEnum::ADMIN->value,
+
+            "skills" => ["React", "Next.js", "Node.js", "UI Design"],
+            "phone" => "+212 600 123 456",
+            "website" => "https://pixcoders.com",
+            "social" => [
+                "github" => "pixcoders",
+                "linkedin" => "pix-coders",
+                "twitter" => "pix_coders"
+            ],
         ]);
 
         $admin->assignRole(RolesEnum::ADMIN->value);
