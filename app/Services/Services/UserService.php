@@ -7,6 +7,7 @@ use App\Http\Resources\UserResource;
 use App\Mail\UserCreatedMail;
 use App\Models\User;
 use App\Services\Constructors\UserConstructor;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
@@ -20,7 +21,8 @@ class UserService implements UserConstructor
     public function index()
     {
         return UserResource::collection(
-            User::paginate(10)
+            User::where('id', '!=', Auth::id())
+                ->paginate(10)
         );
     }
 
