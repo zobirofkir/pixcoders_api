@@ -29,6 +29,18 @@ class UserRequest extends FormRequest
             "password" => "sometimes|string|min:8|confirmed",
             "role" => ["sometimes", new Enum(RolesEnum::class)],
             "avatar" => "nullable|image|mimes:jpg,jpeg,png,webp|max:2048",
+
+            // 🔹 New fields
+            "skills" => "nullable|array",
+            "skills.*" => "string|max:50",
+
+            "phone" => "nullable|string|max:20|regex:/^[0-9+\-\s()]*$/",
+            "website" => "nullable|url|max:255",
+
+            "social" => "nullable|array",
+            "social.github" => "nullable|string|max:100",
+            "social.linkedin" => "nullable|string|max:100",
+            "social.twitter" => "nullable|string|max:100",
         ];
     }
 
@@ -59,6 +71,25 @@ class UserRequest extends FormRequest
             "avatar.image" => "The avatar must be an image file.",
             "avatar.mimes" => "The avatar must be a JPG, JPEG, PNG, or WEBP file.",
             "avatar.max" => "The avatar size must not exceed 2MB.",
+
+            /**
+             * Custom messages for new fields
+             */
+            "skills.array" => "The skills field must be an array.",
+            "skills.*.string" => "Each skill must be a valid string.",
+            "skills.*.max" => "Each skill must not exceed 50 characters.",
+
+            "phone.string" => "The phone number must be a valid string.",
+            "phone.regex" => "The phone number format is invalid.",
+            "phone.max" => "The phone number must not exceed 20 characters.",
+
+            "website.url" => "Please enter a valid website URL.",
+            "website.max" => "The website URL must not exceed 255 characters.",
+
+            "social.array" => "The social field must be an array.",
+            "social.github.string" => "The GitHub username must be a valid string.",
+            "social.linkedin.string" => "The LinkedIn username must be a valid string.",
+            "social.twitter.string" => "The Twitter username must be a valid string.",
         ];
     }
 }
