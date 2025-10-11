@@ -22,7 +22,7 @@ class UserService implements UserConstructor
     {
         return UserResource::collection(
             User::where('id', '!=', Auth::id())
-                ->paginate(10)
+                ->get()
         );
     }
 
