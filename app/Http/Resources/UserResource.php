@@ -19,7 +19,13 @@ class UserResource extends JsonResource
             "name" => $this->name,
             "email" => $this->email,
             "role" => $this->role,
-            "avatar" => asset('storage/' . $this->avatar)
+            "avatar" => $this->avatar ? asset('storage/' . $this->avatar) : null,
+            "skills" => $this->skills ?? [],
+            "phone" => $this->phone,
+            "website" => $this->website,
+            "social" => $this->social ?? [],
+            "created_at" => $this->created_at?->toDateTimeString(),
+            "updated_at" => $this->updated_at?->toDateTimeString(),
         ];
     }
 }
