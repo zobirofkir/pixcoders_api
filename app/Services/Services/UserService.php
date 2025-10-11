@@ -6,7 +6,9 @@ use App\Http\Requests\UserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Services\Constructors\UserConstructor;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class UserService implements UserConstructor
 {
@@ -31,13 +33,18 @@ class UserService implements UserConstructor
             $data['avatar'] = $request->file('avatar')->store('users', 'public');
         }
 
-        $data['password'] = bcrypt($data['password']);
-        
-        return UserResource::make(
-            User::create($data)
-        );
-    }
-    
+        $baseName = Str::slug($data['name']);
+        $randomDigits = random_int(1000, 9999);
+        $generatedPassword = $baseName . $randomDigits;
+
+        $data['password'] = Hash::make($generatedPassword);
+
+        $user = User::create($data);
+
+        return UserResource::make($user)->additional([
+            'generated_password' => $generatedPassword,
+        ]);
+    }        
     /**
      * Display the specified resource.
      */

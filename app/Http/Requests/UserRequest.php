@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Enums\RolesEnum;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Enum;
 
 class UserRequest extends FormRequest
@@ -24,13 +25,13 @@ class UserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name" => "sometimes|string|max:255",
-            "email" => "sometimes|email|unique:users,email",
-            "password" => "sometimes|string|min:8|confirmed",
+            "name" => "sometimes|string|min:5|max:255",
+            'email' => 'sometimes|string|email|max:255|unique:users,email,' . Auth::id(),
+            "password" => "sometimes|string|min:8",
             "role" => ["sometimes", new Enum(RolesEnum::class)],
             "avatar" => "nullable|image|mimes:jpg,jpeg,png,webp|max:2048",
 
-            // 🔹 New fields
+            
             "skills" => "nullable|array",
             "skills.*" => "string|max:50",
 
@@ -55,6 +56,7 @@ class UserRequest extends FormRequest
             "name.required" => "The name field is required.",
             "name.string" => "The name must be a valid string.",
             "name.max" => "The name must not exceed 255 characters.",
+            "name.min" => "The name must be at least 5 characters.",
 
             "email.required" => "The email field is required.",
             "email.email" => "Please enter a valid email address.",
