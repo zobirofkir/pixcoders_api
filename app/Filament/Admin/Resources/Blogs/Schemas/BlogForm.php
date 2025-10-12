@@ -32,13 +32,6 @@ class BlogForm
                     ->required()
                     ->maxLength(255),
 
-                TextInput::make('slug')
-                    ->label('Slug')
-                    ->unique(ignoreRecord: true)
-                    ->required()
-                    ->maxLength(255)
-                    ->hint('Auto-generated from title if not provided'),
-
                 Textarea::make('excerpt')
                     ->label('Excerpt')
                     ->rows(3)
