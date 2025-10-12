@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Admin\Resources\Portfolios\Widgets\PortfolioChartWidget;
 use App\Filament\Admin\Widgets\BlogsChartWidget;
 use App\Filament\Admin\Widgets\UsersWidget;
 use Filament\Http\Middleware\Authenticate;
@@ -39,7 +40,8 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->widgets([
                 UsersWidget::class, 
-                BlogsChartWidget::class
+                BlogsChartWidget::class,
+                PortfolioChartWidget::class
             ])
             ->middleware([
                 EncryptCookies::class,
