@@ -55,4 +55,11 @@ class User extends Authenticatable
         return $this->hasMany(Portfolio::class);
     }
 
+    /**
+     * Relatin Sheep With Blog
+     */
+    public function blogs()
+    {
+        return $this->hasMany(Blog::class);
+    }
 }
