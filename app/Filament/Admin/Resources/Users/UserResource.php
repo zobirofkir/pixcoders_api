@@ -8,6 +8,7 @@ use App\Filament\Admin\Resources\Users\Pages\ListUsers;
 use App\Filament\Admin\Resources\Users\Schemas\UserForm;
 use App\Filament\Admin\Resources\Users\Tables\UsersTable;
 use App\Models\User;
+use App\Policies\UserPolicy;
 use BackedEnum;
 use UnitEnum;
 use Filament\Resources\Resource;
@@ -18,6 +19,7 @@ use Filament\Tables\Table;
 class UserResource extends Resource
 {
     protected static ?string $model = User::class;
+    protected static ?string $policy = UserPolicy::class;
 
     protected static UnitEnum|string|null $navigationGroup = 'Users';
 
