@@ -3,8 +3,10 @@
 namespace App\Filament\Admin\Resources\Users\Schemas;
 
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
+use Spatie\Permission\Models\Role;
 
 class UserForm
 {
@@ -30,6 +32,13 @@ class UserForm
                     ->disk('public')      
                     ->required(false)
                     ->maxSize(1024),
+
+                Select::make('role')
+                    ->label('Role')
+                    ->options(Role::all()->pluck('name', 'id'))
+                    ->required()
+                    ->searchable()
+                    ->preload(),
 
                     TextInput::make('password')
                     ->label('Password')

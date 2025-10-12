@@ -30,11 +30,6 @@ class UsersTable
                     ->disk('public')
                     ->sortable()
                     ->searchable(false),
-
-                TextColumn::make('bio')
-                    ->label('Bio')
-                    ->sortable()
-                    ->searchable(),
             ])
             ->filters([
                 //
