@@ -22,6 +22,7 @@ class BlogsTable
                 ImageColumn::make('image')
                     ->label('Image')
                     ->rounded()
+                    ->disk('public')
                     ->square()
                     ->height(50),
 
