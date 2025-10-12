@@ -121,6 +121,7 @@ class BlogForm
                             ->label('Featured Image')
                             ->image()
                             ->directory('blogs/images')
+                            ->disk('public')
                             ->maxSize(2048)
                             ->imagePreviewHeight('250')
                             ->nullable()
