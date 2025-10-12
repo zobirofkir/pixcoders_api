@@ -22,7 +22,7 @@ class PortfolioResource extends JsonResource
             "image" => asset('storage/' . $this->image),
             "technologies" => $this->technologies,
             "link" => $this->link,
-            "user" => UserResource::make($this->whenLoaded('user')),
+            "user" => $this->whenLoaded('user'),
             "featured" => $this->featured,
             "created_at" => $this->created_at,
             "updated_at" => $this->updated_at
