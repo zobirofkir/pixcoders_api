@@ -23,6 +23,7 @@ class BlogResource extends JsonResource
             "date" => $this->date,
             "readTime" => $this->readTime,
             "featured" => $this->featured,
+            "user" => $this->whenLoaded('user'),
             "tags" => $this->tags,
             "image" => asset('storage/' . $this->image),
             "slug" => $this->slug,
