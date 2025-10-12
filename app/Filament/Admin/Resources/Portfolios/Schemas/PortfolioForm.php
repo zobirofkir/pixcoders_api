@@ -25,11 +25,31 @@ class PortfolioForm
                     ->required()
                     ->maxLength(255),
 
-                TextInput::make('category')
+                Select::make('category')
                     ->label('Category')
-                    ->required()
-                    ->maxLength(255),
-
+                    ->options([
+                        'web_development' => 'Web Development',
+                        'mobile_development' => 'Mobile Development',
+                        'design' => 'Design',
+                        'ui_ux' => 'UI/UX Design',
+                        'backend' => 'Backend Development',
+                        'frontend' => 'Frontend Development',
+                        'fullstack' => 'Fullstack Development',
+                        'ecommerce' => 'E-Commerce',
+                        'cms' => 'CMS Projects',
+                        'seo' => 'SEO Projects',
+                        'marketing' => 'Marketing Tools',
+                        'analytics' => 'Analytics',
+                        'branding' => 'Branding',
+                        'photography' => 'Photography',
+                        'video_production' => 'Video Production',
+                        'game_development' => 'Game Development',
+                        'ai_ml' => 'AI / Machine Learning',
+                        'blockchain' => 'Blockchain',
+                        'education' => 'Educational Projects',
+                    ])
+                    ->required(),
+                    
                 Textarea::make('description')
                     ->label('Description')
                     ->required(),
