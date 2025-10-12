@@ -12,6 +12,8 @@ use Filament\Forms\Components\TagsInput;
 use Filament\Schemas\Schema;
 use App\Models\User;
 use Filament\Forms\Components\Hidden;
+use Filament\Schemas\Components\Grid;
+use Filament\Schemas\Components\Section;
 use Illuminate\Support\Facades\Auth;
 
 class BlogForm
@@ -20,73 +22,110 @@ class BlogForm
     {
         return $schema
             ->components([
-                Select::make('user_id')
-                    ->label('Author (User)')
-                    ->relationship('user', 'name')
-                    ->default(fn () => Auth::id())
-                    ->required()
-                    ->disabled(),
+                Section::make('Blog Details')
+                    ->description('Basic information about the blog post')
+                    ->schema([
+                        Grid::make(2)
+                            ->schema([
+                                Select::make('user_id')
+                                    ->label('Author (User)')
+                                    ->relationship('user', 'name')
+                                    ->default(fn () => Auth::id())
+                                    ->disabled()
+                                    ->required()
+                                    ->dehydrated(),
 
-                TextInput::make('title')
-                    ->label('Blog Title')
-                    ->required()
-                    ->maxLength(255),
+                                TextInput::make('author')
+                                    ->label('Author Name')
+                                    ->default(fn () => Auth::user()?->name)
+                                    ->disabled()
+                                    ->dehydrated(),
+                            ]),
 
-                Textarea::make('excerpt')
-                    ->label('Excerpt')
-                    ->rows(3)
-                    ->maxLength(500)
-                    ->nullable(),
+                        TextInput::make('title')
+                            ->label('Blog Title')
+                            ->required()
+                            ->maxLength(255)
+                            ->columnSpanFull(),
 
-                Select::make('category')
-                    ->label('Category')
-                    ->options([
-                        'web-development' => 'Web Development',
-                        'ai' => 'Artificial Intelligence',
-                        'design' => 'UI/UX Design',
-                        'mobile' => 'Mobile Development',
-                        'devops' => 'DevOps',
-                        'security' => 'Cyber Security',
-                        'cloud' => 'Cloud Computing',
-                        'marketing' => 'Digital Marketing',
-                        'data-science' => 'Data Science',
-                        'blockchain' => 'Blockchain',
-                        'productivity' => 'Productivity',
-                        'career' => 'Career & Growth',
-                    ])
-                    ->required(),
+                        Textarea::make('excerpt')
+                            ->label('Excerpt')
+                            ->placeholder('Short summary of your blog...')
+                            ->rows(3)
+                            ->maxLength(500)
+                            ->nullable()
+                            ->columnSpanFull(),
+                    ]),
 
-                TextInput::make('author')
-                    ->label('Author Name')
-                    ->default(fn () => Auth::user()?->name)
-                    ->disabled()
-                    ->dehydrated(), 
-                    
-                DatePicker::make('date')
-                    ->label('Publication Date')
-                    ->required(),
+                Section::make('Categorization & Tags')
+                    ->description('Organize your blog by category and tags')
+                    ->schema([
+                        Grid::make(2)
+                            ->schema([
+                                Select::make('category')
+                                    ->label('Category')
+                                    ->options([
+                                        'web-development' => 'Web Development',
+                                        'ai' => 'Artificial Intelligence',
+                                        'design' => 'UI/UX Design',
+                                        'mobile' => 'Mobile Development',
+                                        'devops' => 'DevOps',
+                                        'security' => 'Cyber Security',
+                                        'cloud' => 'Cloud Computing',
+                                        'marketing' => 'Digital Marketing',
+                                        'data-science' => 'Data Science',
+                                        'blockchain' => 'Blockchain',
+                                        'productivity' => 'Productivity',
+                                        'career' => 'Career & Growth',
+                                    ])
+                                    ->searchable()
+                                    ->required(),
 
-                TextInput::make('readTime')
-                    ->label('Read Time')
-                    ->placeholder('e.g. 8 min read')
-                    ->maxLength(50)
-                    ->nullable(),
+                                TagsInput::make('tags')
+                                    ->label('Tags')
+                                    ->placeholder('Add tags like React, AI, PWA')
+                                    ->separator(',')
+                                    ->suggestions([
+                                        'React', 'Laravel', 'Next.js', 'Tailwind', 'Python',
+                                        'Docker', 'AWS', 'Kubernetes', 'SEO', 'Node.js',
+                                        'AI', 'Vue', 'PHP', 'GitHub', 'Firebase'
+                                    ]),
+                            ]),
+                    ]),
 
-                Toggle::make('featured')
-                    ->label('Featured')
-                    ->default(false),
+                Section::make('Publication Settings')
+                    ->description('Control visibility and timing')
+                    ->schema([
+                        Grid::make(3)
+                            ->schema([
+                                DatePicker::make('date')
+                                    ->label('Publication Date')
+                                    ->required(),
 
-                TagsInput::make('tags')
-                    ->label('Tags')
-                    ->placeholder('Add tags like React, AI, PWA')
-                    ->separator(','),
+                                TextInput::make('readTime')
+                                    ->label('Read Time')
+                                    ->placeholder('e.g. 8 min read')
+                                    ->maxLength(50)
+                                    ->nullable(),
 
-                FileUpload::make('image')
-                    ->label('Featured Image')
-                    ->image()
-                    ->directory('blogs/images')
-                    ->maxSize(2048)
-                    ->nullable(),
+                                Toggle::make('featured')
+                                    ->label('Featured')
+                                    ->default(false),
+                            ]),
+                    ]),
+
+                Section::make('Media')
+                    ->description('Upload a featured image for your blog post')
+                    ->schema([
+                        FileUpload::make('image')
+                            ->label('Featured Image')
+                            ->image()
+                            ->directory('blogs/images')
+                            ->maxSize(2048)
+                            ->imagePreviewHeight('250')
+                            ->nullable()
+                            ->columnSpanFull(),
+                    ]),
             ])->columns(1);
     }
 }
