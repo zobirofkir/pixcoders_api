@@ -90,7 +90,7 @@ class BlogForm
                                         'Docker', 'AWS', 'Kubernetes', 'SEO', 'Node.js',
                                         'AI', 'Vue', 'PHP', 'GitHub', 'Firebase'
                                     ]),
-                            ]),
+                            ])->columns(1),
                     ]),
 
                 Section::make('Publication Settings')
@@ -105,7 +105,7 @@ class BlogForm
                                 Toggle::make('featured')
                                     ->label('Featured')
                                     ->default(false),
-                            ]),
+                            ])->columns(1),
                     ]),
 
                 Section::make('Media')
