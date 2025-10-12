@@ -27,6 +27,7 @@ class BlogResource extends JsonResource
             "tags" => $this->tags,
             "image" => asset('storage/' . $this->image),
             "slug" => $this->slug,
+            "created_at" => $this->created_at,
         ];
     }
 }
