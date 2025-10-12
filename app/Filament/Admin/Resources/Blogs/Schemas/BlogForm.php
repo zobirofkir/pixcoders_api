@@ -105,6 +105,8 @@ class BlogForm
                                 TextInput::make('readTime')
                                     ->label('Read Time')
                                     ->placeholder('e.g. 8 min read')
+                                    ->default('10 Hours')
+                                    ->disabled()
                                     ->maxLength(50)
                                     ->nullable(),
 
