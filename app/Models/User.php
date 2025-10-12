@@ -46,4 +46,13 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * Relation Sheep With User
+     */
+    public function portfolios()
+    {
+        return $this->hasMany(Portfolio::class);
+    }
+
 }
