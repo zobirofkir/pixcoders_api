@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('company_name')->nullable();
             $table->string('phone_number')->nullable();
             $table->string('service');
-            $table->string('project_type');
+            $table->string('project_type')->nullable();
             $table->string('budget');
             $table->string('project_timeline');
             $table->longText('project_description');
