@@ -15,7 +15,7 @@ class BlogService implements BlogConstructor
     public function index() : AnonymousResourceCollection
     {
         return BlogResource::collection(
-            Blog::with('user')->latest()->get()
+            Blog::with('user')->latest()->orderBy('id', 'desc')->get()
         );
     }
 

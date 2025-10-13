@@ -15,7 +15,7 @@ class PortfolioService implements PortfolioConstructor
     public function index(): AnonymousResourceCollection
     {
         return PortfolioResource::collection(
-            Portfolio::with('user')->get()
+            Portfolio::with('user')->orderBy('id', 'desc')->get()
         );
     }
 
