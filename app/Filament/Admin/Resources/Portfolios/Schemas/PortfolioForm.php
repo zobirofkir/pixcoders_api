@@ -23,6 +23,9 @@ class PortfolioForm
                 TextInput::make('title')
                     ->label('Title')
                     ->required()
+                    ->validationMessages([
+                        'required' => 'The title field is required.',
+                    ])
                     ->maxLength(255),
 
                 Select::make('category')
@@ -136,28 +139,43 @@ class PortfolioForm
                         'templates' => 'Templates',
                     ])
                     ->searchable()
-                    ->required(),
+                    ->required()
+                    ->validationMessages([
+                        'required' => 'The category field is required.',
+                    ]),
                     
                 Textarea::make('description')
                     ->label('Description')
-                    ->required(),
+                    ->required()
+                    ->validationMessages([
+                        'required' => 'The description field is required.',
+                    ]),
 
                 FileUpload::make('image')
                     ->label('Image')
                     ->image()
                     ->directory('portfolios')
                     ->disk('public')
-                    ->required(false)
+                    ->required()
+                    ->validationMessages([
+                        'required' => 'The image field is required.',
+                    ])
                     ->maxSize(2048),
 
                 TagsInput::make('technologies')
                     ->label('Technologies')
-                    ->required(false),
+                    ->required()
+                    ->validationMessages([
+                        'required' => 'The technologies field is required.',
+                    ]),
 
                 TextInput::make('link')
                     ->label('Project Link')
                     ->url()
-                    ->required(false)
+                    ->required()
+                    ->validationMessages([
+                        'required' => 'The project link field is required.',
+                    ])
                     ->maxLength(255),
 
                 Toggle::make('featured')

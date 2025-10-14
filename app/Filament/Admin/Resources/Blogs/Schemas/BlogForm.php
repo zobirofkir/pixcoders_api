@@ -113,24 +113,6 @@ class BlogForm
                             ])->columns(1),
                     ]),
 
-                Section::make('Publication Settings')
-                    ->description('Control visibility and timing')
-                    ->schema([
-                        Grid::make(3)
-                            ->schema([
-                                DatePicker::make('date')
-                                    ->label('Publication Date')
-                                    ->required()
-                                    ->validationMessages([
-                                        'required' => 'Publication date is required.',
-                                    ]),
-
-                                Toggle::make('featured')
-                                    ->label('Featured')
-                                    ->default(false),
-                            ])->columns(1),
-                    ]),
-
                 Section::make('Media')
                     ->description('Upload a featured image for your blog post')
                     ->schema([
@@ -147,6 +129,25 @@ class BlogForm
                             ])
                             ->columnSpanFull(),
                     ]),
+
+                    Section::make('Publication Settings')
+                        ->description('Control visibility and timing')
+                        ->schema([
+                            Grid::make(3)
+                                ->schema([
+                                    DatePicker::make('date')
+                                        ->label('Publication Date')
+                                        ->required()
+                                        ->validationMessages([
+                                            'required' => 'Publication date is required.',
+                                        ]),
+
+                                    Toggle::make('featured')
+                                        ->label('Featured')
+                                        ->default(false),
+                                ])->columns(1),
+                        ]),
+
             ])->columns(1);
     }
 }
