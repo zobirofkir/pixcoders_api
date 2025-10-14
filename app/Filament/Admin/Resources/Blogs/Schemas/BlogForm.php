@@ -3,7 +3,7 @@
 namespace App\Filament\Admin\Resources\Blogs\Schemas;
 
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\FileUpload;
@@ -58,14 +58,11 @@ class BlogForm
                             ->maxLength(255)
                             ->columnSpanFull(),
 
-                        Textarea::make('excerpt')
+                        RichEditor::make('excerpt')
                             ->label('Excerpt')
-                            ->placeholder('Short summary of your blog...')
-                            ->rows(3)
-                            ->maxLength(500)
-                            ->required()
-                            ->validationMessages([
-                                'required' => 'Excerpt is required.',
+                            ->extraInputAttributes([
+                                'class' => 'min-h-[600px] resize-y overflow-auto',
+                                'style' => 'min-height: 600px; resize: vertical; overflow: auto;'
                             ])
                             ->columnSpanFull(),
                     ]),
