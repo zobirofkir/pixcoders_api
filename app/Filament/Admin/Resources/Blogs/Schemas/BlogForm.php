@@ -33,18 +33,28 @@ class BlogForm
                                     ->default(fn () => Auth::id())
                                     ->disabled()
                                     ->required()
+                                    ->validationMessages([
+                                        'required' => 'Author is required.',
+                                    ])
                                     ->dehydrated(),
 
                                 TextInput::make('author')
                                     ->label('Author Name')
                                     ->default(fn () => Auth::user()?->name)
                                     ->disabled()
+                                    ->required()
+                                    ->validationMessages([
+                                        'required' => 'Author name is required.',
+                                    ])
                                     ->dehydrated(),
                             ]),
 
                         TextInput::make('title')
                             ->label('Blog Title')
                             ->required()
+                            ->validationMessages([
+                                'required' => 'Title is required.',
+                            ])
                             ->maxLength(255)
                             ->columnSpanFull(),
 
@@ -53,7 +63,10 @@ class BlogForm
                             ->placeholder('Short summary of your blog...')
                             ->rows(3)
                             ->maxLength(500)
-                            ->nullable()
+                            ->required()
+                            ->validationMessages([
+                                'required' => 'Excerpt is required.',
+                            ])
                             ->columnSpanFull(),
                     ]),
 
@@ -79,7 +92,10 @@ class BlogForm
                                         'career' => 'Career & Growth',
                                     ])
                                     ->searchable()
-                                    ->required(),
+                                    ->required()
+                                    ->validationMessages([
+                                        'required' => 'Category is required.',
+                                    ]),
 
                                 TagsInput::make('tags')
                                     ->label('Tags')
@@ -89,6 +105,10 @@ class BlogForm
                                         'React', 'Laravel', 'Next.js', 'Tailwind', 'Python',
                                         'Docker', 'AWS', 'Kubernetes', 'SEO', 'Node.js',
                                         'AI', 'Vue', 'PHP', 'GitHub', 'Firebase'
+                                    ])
+                                    ->required()
+                                    ->validationMessages([
+                                        'required' => 'At least one tag is required.',
                                     ]),
                             ])->columns(1),
                     ]),
@@ -100,7 +120,10 @@ class BlogForm
                             ->schema([
                                 DatePicker::make('date')
                                     ->label('Publication Date')
-                                    ->required(),
+                                    ->required()
+                                    ->validationMessages([
+                                        'required' => 'Publication date is required.',
+                                    ]),
 
                                 Toggle::make('featured')
                                     ->label('Featured')
@@ -118,7 +141,10 @@ class BlogForm
                             ->disk('public')
                             ->maxSize(2048)
                             ->imagePreviewHeight('250')
-                            ->nullable()
+                            ->required()
+                            ->validationMessages([
+                                'required' => 'Featured image is required.',
+                            ])
                             ->columnSpanFull(),
                     ]),
             ])->columns(1);
