@@ -5,5 +5,6 @@ return [
     App\Providers\BlogServiceProvider::class,
     App\Providers\Filament\AdminPanelProvider::class,
     App\Providers\PortfolioServiceProvider::class,
+    App\Providers\SubscriberServiceProvider::class,
     App\Providers\UserServiceProvider::class,
 ];
