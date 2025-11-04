@@ -33,7 +33,7 @@ Route::prefix("users")->group(function() {
     /**
      * Subscribtion Routes
      */
-    Route::apiResource('subscribe', SubscriberController::class);
+    Route::apiResource('subscribers', SubscriberController::class);
 
 
 });
