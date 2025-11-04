@@ -10,6 +10,7 @@ use App\Filament\Admin\Resources\Subscribers\Schemas\SubscriberForm;
 use App\Filament\Admin\Resources\Subscribers\Schemas\SubscriberInfolist;
 use App\Filament\Admin\Resources\Subscribers\Tables\SubscribersTable;
 use App\Models\Subscriber;
+use App\Policies\SubscriberPolicy;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
@@ -20,6 +21,7 @@ use UnitEnum;
 class SubscriberResource extends Resource
 {
     protected static ?string $model = Subscriber::class;
+    protected static ?string $policy = SubscriberPolicy::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
