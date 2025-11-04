@@ -19,6 +19,6 @@ class SubscriberForm
                     ->required(),
                 Toggle::make('opt_in')
                     ->required(),
-            ]);
+            ])->columns(1);
     }
 }
