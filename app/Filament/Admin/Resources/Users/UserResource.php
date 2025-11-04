@@ -15,10 +15,13 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 
 class UserResource extends Resource
 {
     protected static ?string $model = User::class;
+
     protected static ?string $policy = UserPolicy::class;
 
     protected static UnitEnum|string|null $navigationGroup = 'Users';
@@ -42,6 +45,11 @@ class UserResource extends Resource
     public static function getRelations(): array
     {
         return [];
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()->where('id', '!=', Auth::id());
     }
 
     public static function getPages(): array
