@@ -14,7 +14,8 @@ class Portfolio extends Model
         "image",
         "technologies",
         "link",
-        "featured"
+        "featured",
+        "slug"
     ] ;
 
     protected $casts = [
