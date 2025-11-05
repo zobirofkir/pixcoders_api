@@ -13,7 +13,7 @@ class PortfolioObserver
     public function creating(Portfolio $portfolio): void
     {
         if (empty($portfolio->slug)) {
-            $portfolio->slug = Str::slug($portfolio->title);
+            $portfolio->slug = $this->generateUniqueSlug($portfolio->title);
         }
     }
 
@@ -23,7 +23,28 @@ class PortfolioObserver
     public function updating(Portfolio $portfolio): void
     {
         if ($portfolio->isDirty('title')) {
-            $portfolio->slug = Str::slug($portfolio->title);
+            $portfolio->slug = $this->generateUniqueSlug($portfolio->title, $portfolio->id);
         }
+    }
+
+    /**
+     * Generate a unique slug for the portfolio.
+     */
+    protected function generateUniqueSlug(string $title, ?int $ignoreId = null): string
+    {
+        $slug = Str::slug($title);
+        $originalSlug = $slug;
+        $count = 2;
+
+        while (
+            Portfolio::where('slug', $slug)
+                ->when($ignoreId, fn($query) => $query->where('id', '!=', $ignoreId))
+                ->exists()
+        ) {
+            $slug = "{$originalSlug}-{$count}";
+            $count++;
+        }
+
+        return $slug;
     }
 }
