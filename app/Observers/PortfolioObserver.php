@@ -3,46 +3,27 @@
 namespace App\Observers;
 
 use App\Models\Portfolio;
+use Illuminate\Support\Str;
 
 class PortfolioObserver
 {
     /**
-     * Handle the Portfolio "created" event.
+     * Handle the Portfolio "creating" event.
      */
-    public function created(Portfolio $portfolio): void
+    public function creating(Portfolio $portfolio): void
     {
-        //
+        if (empty($portfolio->slug)) {
+            $portfolio->slug = Str::slug($portfolio->title);
+        }
     }
 
     /**
-     * Handle the Portfolio "updated" event.
+     * Handle the Portfolio "updating" event.
      */
-    public function updated(Portfolio $portfolio): void
+    public function updating(Portfolio $portfolio): void
     {
-        //
-    }
-
-    /**
-     * Handle the Portfolio "deleted" event.
-     */
-    public function deleted(Portfolio $portfolio): void
-    {
-        //
-    }
-
-    /**
-     * Handle the Portfolio "restored" event.
-     */
-    public function restored(Portfolio $portfolio): void
-    {
-        //
-    }
-
-    /**
-     * Handle the Portfolio "force deleted" event.
-     */
-    public function forceDeleted(Portfolio $portfolio): void
-    {
-        //
+        if ($portfolio->isDirty('title')) {
+            $portfolio->slug = Str::slug($portfolio->title);
+        }
     }
 }
