@@ -24,6 +24,7 @@ class PortfolioResource extends JsonResource
             "link" => $this->link,
             "user" => $this->whenLoaded('user'),
             "featured" => $this->featured,
+            "slug" => $this->slug,
             "created_at" => $this->created_at,
             "updated_at" => $this->updated_at
         ];
