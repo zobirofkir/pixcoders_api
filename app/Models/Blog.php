@@ -35,6 +35,10 @@ class Blog extends Model
         'date' => 'date',       
     ];
 
+    /**
+     * Get the route key for the model.
+     * This allows us to use the 'slug' instead of 'id' in route model binding.
+     */
     public function getRouteKeyName()
     {
         return 'slug';

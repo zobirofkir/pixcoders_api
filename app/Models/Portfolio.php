@@ -24,6 +24,15 @@ class Portfolio extends Model
     ];
 
     /**
+     * Get the route key for the model.
+     * This allows us to use the 'slug' instead of 'id' in route model binding.
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    /**
      * Relation Sheep With User
      */
     public function user()
