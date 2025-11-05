@@ -35,6 +35,11 @@ class Blog extends Model
         'date' => 'date',       
     ];
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     /**
      * Relationship: Blog belongs to a User
      */
