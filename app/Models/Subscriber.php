@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Subscriber extends Model
 {
     protected $fillable = [
-        "name",
-        "phone",
-        "opt_in"
+        'name',
+        'phone',
+        'opt_in',
     ];
 }

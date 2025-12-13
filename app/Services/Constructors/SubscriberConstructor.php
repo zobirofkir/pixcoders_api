@@ -10,5 +10,5 @@ interface SubscriberConstructor
     /**
      * store the subscribtion
      */
-    public function store(SubscriberRequest $request) : SubscriberResource;
+    public function store(SubscriberRequest $request): SubscriberResource;
 }

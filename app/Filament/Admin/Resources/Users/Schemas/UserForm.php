@@ -28,8 +28,8 @@ class UserForm
                 FileUpload::make('avatar')
                     ->label('Avatar')
                     ->image()
-                    ->directory('avatars') 
-                    ->disk('public')      
+                    ->directory('avatars')
+                    ->disk('public')
                     ->required(false)
                     ->maxSize(1024),
 
@@ -40,11 +40,11 @@ class UserForm
                     ->searchable()
                     ->preload(),
 
-                    TextInput::make('password')
+                TextInput::make('password')
                     ->label('Password')
                     ->password()
                     ->required()
-                    ->maxLength(255)
+                    ->maxLength(255),
             ])->columns(1);
     }
 }

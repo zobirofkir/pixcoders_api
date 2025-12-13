@@ -5,10 +5,9 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\GetStartedController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\SubscriberController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix("users")->group(function() {
+Route::prefix('users')->group(function () {
 
     /**
      * Portfolios Route
@@ -34,6 +33,5 @@ Route::prefix("users")->group(function() {
      * Subscribtion Routes
      */
     Route::apiResource('subscribers', SubscriberController::class);
-
 
 });

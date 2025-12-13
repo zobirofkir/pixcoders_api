@@ -12,7 +12,7 @@ class SubscriberService implements SubscriberConstructor
     /**
      * Store the subscription
      */
-    public function store(SubscriberRequest $request) : SubscriberResource
+    public function store(SubscriberRequest $request): SubscriberResource
     {
         return SubscriberResource::make(
             Subscriber::create(

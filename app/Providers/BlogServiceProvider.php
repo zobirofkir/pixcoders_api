@@ -12,8 +12,8 @@ class BlogServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->bind("BlogService", function() {
-            return new BlogService();
+        $this->app->bind('BlogService', function () {
+            return new BlogService;
         });
     }
 

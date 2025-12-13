@@ -19,12 +19,12 @@ class BlogsChartWidget extends ChartWidget
             'datasets' => [
                 [
                     'label' => 'Total Blogs',
-                    'data' => [$totalBlogs], 
+                    'data' => [$totalBlogs],
                     'backgroundColor' => ['hsl(200, 70%, 60%)'],
                     'borderWidth' => 1,
                 ],
             ],
-            'labels' => ['Blogs'], 
+            'labels' => ['Blogs'],
         ];
     }
 

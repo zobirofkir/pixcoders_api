@@ -17,7 +17,7 @@ class CreateUser extends CreateRecord
         if (isset($data['password']) && filled($data['password'])) {
             $data['password'] = Hash::make($data['password']);
         }
-        
+
         return $data;
     }
 
@@ -26,7 +26,7 @@ class CreateUser extends CreateRecord
         // Assign role to user
         $roleId = $this->form->getState()['role'];
         $role = Role::find($roleId);
-        
+
         if ($role) {
             $this->record->assignRole($role->name);
         }

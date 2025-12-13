@@ -21,6 +21,7 @@ use UnitEnum;
 class SubscriberResource extends Resource
 {
     protected static ?string $model = Subscriber::class;
+
     protected static ?string $policy = SubscriberPolicy::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
@@ -28,9 +29,8 @@ class SubscriberResource extends Resource
     protected static UnitEnum|string|null $navigationGroup = 'Subscribers';
 
     protected static ?string $recordTitleAttribute = 'Subscriber';
-    
-    protected static ?string $navigationLabel = 'Subscribers';
 
+    protected static ?string $navigationLabel = 'Subscribers';
 
     public static function form(Schema $schema): Schema
     {

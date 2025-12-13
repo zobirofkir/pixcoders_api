@@ -12,7 +12,7 @@ class BlogService implements BlogConstructor
     /**
      * List all blogs
      */
-    public function index() : AnonymousResourceCollection
+    public function index(): AnonymousResourceCollection
     {
         return BlogResource::collection(
             Blog::with('user')->latest()->orderBy('id', 'desc')->get()
@@ -22,7 +22,7 @@ class BlogService implements BlogConstructor
     /**
      * Show specific blog
      */
-    public function show(Blog $blog) : BlogResource
+    public function show(Blog $blog): BlogResource
     {
         return BlogResource::make($blog);
     }

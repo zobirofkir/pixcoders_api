@@ -15,18 +15,18 @@ class PortfolioResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            "id" => $this->id,
-            "title" => $this->title,
-            "category" => $this->category,
-            "description" => $this->description,
-            "image" => asset('storage/' . $this->image),
-            "technologies" => $this->technologies,
-            "link" => $this->link,
-            "user" => $this->whenLoaded('user'),
-            "featured" => $this->featured,
-            "slug" => $this->slug,
-            "created_at" => $this->created_at,
-            "updated_at" => $this->updated_at
+            'id' => $this->id,
+            'title' => $this->title,
+            'category' => $this->category,
+            'description' => $this->description,
+            'image' => asset('storage/'.$this->image),
+            'technologies' => $this->technologies,
+            'link' => $this->link,
+            'user' => $this->whenLoaded('user'),
+            'featured' => $this->featured,
+            'slug' => $this->slug,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ];
     }
 }

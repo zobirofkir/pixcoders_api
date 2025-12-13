@@ -37,7 +37,7 @@ class EditUser extends EditRecord
         // Sync role
         $roleId = $this->form->getState()['role'];
         $role = Role::find($roleId);
-        
+
         if ($role) {
             $this->record->syncRoles([$role->name]);
         }
@@ -46,7 +46,7 @@ class EditUser extends EditRecord
     protected function fillForm(): void
     {
         $state = $this->record->toArray();
-        
+
         // Add the role to form data - get the first role's ID
         $state['role'] = $this->record->roles->first()?->id;
 

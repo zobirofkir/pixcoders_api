@@ -30,9 +30,9 @@ class Blog extends Model
      * The attributes that should be cast to native types.
      */
     protected $casts = [
-        'tags' => 'array',       
-        'featured' => 'boolean', 
-        'date' => 'date',       
+        'tags' => 'array',
+        'featured' => 'boolean',
+        'date' => 'date',
     ];
 
     /**

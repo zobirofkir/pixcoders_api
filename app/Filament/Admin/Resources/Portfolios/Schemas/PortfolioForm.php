@@ -2,16 +2,14 @@
 
 namespace App\Filament\Admin\Resources\Portfolios\Schemas;
 
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Textarea;
-use Filament\Forms\Components\Toggle;
-use Filament\Forms\Components\Select;
 use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\TagsInput;
-use Filament\Forms\Components\BelongsToSelect;
-use Filament\Schemas\Schema;
-use App\Models\User;
 use Filament\Forms\Components\Hidden;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TagsInput;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
+use Filament\Schemas\Schema;
 use Illuminate\Support\Facades\Auth;
 
 class PortfolioForm
@@ -143,7 +141,7 @@ class PortfolioForm
                     ->validationMessages([
                         'required' => 'The category field is required.',
                     ]),
-                    
+
                 Textarea::make('description')
                     ->label('Description')
                     ->required()
@@ -182,7 +180,7 @@ class PortfolioForm
                     ->label('Featured')
                     ->required(false),
 
-                Hidden::make('user_id')->default(Auth::user()->id)
+                Hidden::make('user_id')->default(Auth::user()->id),
             ])->columns(1);
     }
 }

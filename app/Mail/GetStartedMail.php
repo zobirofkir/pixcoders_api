@@ -26,7 +26,7 @@ class GetStartedMail extends Mailable
     public function build()
     {
         return $this->subject('New Get Started Request')
-                    ->markdown('emails.get_started')
-                    ->with('data', $this->data);
+            ->markdown('emails.get_started')
+            ->with('data', $this->data);
     }
 }

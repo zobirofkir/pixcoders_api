@@ -2,18 +2,16 @@
 
 namespace App\Filament\Admin\Resources\Blogs\Schemas;
 
-use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\Toggle;
-use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\TagsInput;
-use Filament\Schemas\Schema;
-use App\Models\User;
-use Filament\Forms\Components\Hidden;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Section;
+use Filament\Schemas\Schema;
 use Illuminate\Support\Facades\Auth;
 
 class BlogForm
@@ -62,7 +60,7 @@ class BlogForm
                             ->label('Excerpt')
                             ->extraInputAttributes([
                                 'class' => 'min-h-[600px] resize-y overflow-auto',
-                                'style' => 'min-height: 600px; resize: vertical; overflow: auto;'
+                                'style' => 'min-height: 600px; resize: vertical; overflow: auto;',
                             ])
                             ->columnSpanFull(),
                     ]),
@@ -101,7 +99,7 @@ class BlogForm
                                     ->suggestions([
                                         'React', 'Laravel', 'Next.js', 'Tailwind', 'Python',
                                         'Docker', 'AWS', 'Kubernetes', 'SEO', 'Node.js',
-                                        'AI', 'Vue', 'PHP', 'GitHub', 'Firebase'
+                                        'AI', 'Vue', 'PHP', 'GitHub', 'Firebase',
                                     ])
                                     ->required()
                                     ->validationMessages([
@@ -127,23 +125,23 @@ class BlogForm
                             ->columnSpanFull(),
                     ]),
 
-                    Section::make('Publication Settings')
-                        ->description('Control visibility and timing')
-                        ->schema([
-                            Grid::make(3)
-                                ->schema([
-                                    DatePicker::make('date')
-                                        ->label('Publication Date')
-                                        ->required()
-                                        ->validationMessages([
-                                            'required' => 'Publication date is required.',
-                                        ]),
+                Section::make('Publication Settings')
+                    ->description('Control visibility and timing')
+                    ->schema([
+                        Grid::make(3)
+                            ->schema([
+                                DatePicker::make('date')
+                                    ->label('Publication Date')
+                                    ->required()
+                                    ->validationMessages([
+                                        'required' => 'Publication date is required.',
+                                    ]),
 
-                                    Toggle::make('featured')
-                                        ->label('Featured')
-                                        ->default(false),
-                                ])->columns(1),
-                        ]),
+                                Toggle::make('featured')
+                                    ->label('Featured')
+                                    ->default(false),
+                            ])->columns(1),
+                    ]),
 
             ])->columns(1);
     }

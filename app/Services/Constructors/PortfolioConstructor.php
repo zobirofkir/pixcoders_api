@@ -11,10 +11,10 @@ interface PortfolioConstructor
     /**
      * List all portfolios
      */
-    public function index() : AnonymousResourceCollection;
+    public function index(): AnonymousResourceCollection;
 
     /**
      * Show Portfolio
      */
-    public function show(Portfolio $portfolio) : PortfolioResource;
+    public function show(Portfolio $portfolio): PortfolioResource;
 }

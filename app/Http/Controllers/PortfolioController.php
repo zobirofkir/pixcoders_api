@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Resources\PortfolioResource;
 use App\Models\Portfolio;
 use App\Services\Facades\PortfolioFacade;
-use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class PortfolioController extends Controller
@@ -13,7 +12,7 @@ class PortfolioController extends Controller
     /**
      * List all portfolios
      */
-    public function index() : AnonymousResourceCollection
+    public function index(): AnonymousResourceCollection
     {
         return PortfolioFacade::index();
     }
@@ -21,7 +20,7 @@ class PortfolioController extends Controller
     /**
      * Show Specific portfolio
      */
-    public function show(Portfolio $portfolio) 
+    public function show(Portfolio $portfolio)
     {
         return PortfolioResource::make($portfolio);
     }

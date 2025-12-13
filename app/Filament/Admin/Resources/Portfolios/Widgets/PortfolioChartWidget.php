@@ -19,12 +19,12 @@ class PortfolioChartWidget extends ChartWidget
             'datasets' => [
                 [
                     'label' => 'Total Portfolios',
-                    'data' => [$totalPortfolios], 
-                    'backgroundColor' => ['hsl(120, 70%, 60%)'], 
+                    'data' => [$totalPortfolios],
+                    'backgroundColor' => ['hsl(120, 70%, 60%)'],
                     'borderWidth' => 1,
                 ],
             ],
-            'labels' => ['Portfolios'], 
+            'labels' => ['Portfolios'],
         ];
     }
 

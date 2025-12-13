@@ -14,15 +14,15 @@ return new class extends Migration
         Schema::create('blogs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
-            $table->string('title'); 
-            $table->text('excerpt')->nullable(); 
-            $table->string('category'); 
-            $table->string('author'); 
-            $table->date('date'); 
+            $table->string('title');
+            $table->text('excerpt')->nullable();
+            $table->string('category');
+            $table->string('author');
+            $table->date('date');
             $table->string('readTime')->nullable();
-            $table->boolean('featured')->default(false); 
-            $table->json('tags')->nullable(); 
-            $table->string('image')->nullable(); 
+            $table->boolean('featured')->default(false);
+            $table->json('tags')->nullable();
+            $table->string('image')->nullable();
             $table->string('slug')->unique();
             $table->timestamps();
         });

@@ -8,6 +8,7 @@ use Illuminate\Filesystem\Filesystem;
 class ServiceCommand extends Command
 {
     protected $signature = 'make:service {name}';
+
     protected $description = 'Create Service and Facade and Constructor Automatically';
 
     public function handle()

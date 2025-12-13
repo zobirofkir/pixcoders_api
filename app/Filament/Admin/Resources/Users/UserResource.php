@@ -10,13 +10,13 @@ use App\Filament\Admin\Resources\Users\Tables\UsersTable;
 use App\Models\User;
 use App\Policies\UserPolicy;
 use BackedEnum;
-use UnitEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
+use UnitEnum;
 
 class UserResource extends Resource
 {
@@ -29,7 +29,7 @@ class UserResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     protected static ?string $recordTitleAttribute = 'User';
-    
+
     protected static ?string $navigationLabel = 'Users Management';
 
     public static function form(Schema $schema): Schema

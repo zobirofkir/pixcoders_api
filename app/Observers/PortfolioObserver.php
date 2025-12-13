@@ -38,7 +38,7 @@ class PortfolioObserver
 
         while (
             Portfolio::where('slug', $slug)
-                ->when($ignoreId, fn($query) => $query->where('id', '!=', $ignoreId))
+                ->when($ignoreId, fn ($query) => $query->where('id', '!=', $ignoreId))
                 ->exists()
         ) {
             $slug = "{$originalSlug}-{$count}";

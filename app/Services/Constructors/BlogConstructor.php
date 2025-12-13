@@ -11,10 +11,10 @@ interface BlogConstructor
     /**
      * List all blogs
      */
-    public function index() : AnonymousResourceCollection;
+    public function index(): AnonymousResourceCollection;
 
     /**
      * Show specific blog
      */
-    public function show(Blog $blog) : BlogResource ;
+    public function show(Blog $blog): BlogResource;
 }

@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\GetStartedRequest;
 use App\Http\Resources\GetStartedResource;
-use App\Models\GetStarted;
-use Illuminate\Http\Request;
 use App\Mail\GetStartedMail;
+use App\Models\GetStarted;
 use Illuminate\Support\Facades\Mail;
 
 class GetStartedController extends Controller
@@ -25,5 +24,3 @@ class GetStartedController extends Controller
         return GetStartedResource::make($getStarted);
     }
 }
-
-

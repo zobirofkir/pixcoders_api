@@ -28,7 +28,7 @@ class UsersWidget extends StatsOverviewWidget
                 ->color('primary'),
 
             Stat::make('New This Month', number_format($newUsersThisMonth))
-                ->description('Users joined in ' . now()->format('F'))
+                ->description('Users joined in '.now()->format('F'))
                 ->icon('heroicon-o-user-plus')
                 ->color($newUsersThisMonth > 0 ? 'success' : 'gray'),
 

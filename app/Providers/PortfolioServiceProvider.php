@@ -12,8 +12,8 @@ class PortfolioServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->bind('PortfolioService', function() {
-            return new PortfolioService();
+        $this->app->bind('PortfolioService', function () {
+            return new PortfolioService;
         });
     }
 

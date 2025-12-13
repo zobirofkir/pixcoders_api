@@ -7,20 +7,20 @@ use Illuminate\Database\Eloquent\Model;
 class Portfolio extends Model
 {
     protected $fillable = [
-        "user_id",
-        "title",
-        "category", 
-        "description",
-        "image",
-        "technologies",
-        "link",
-        "featured",
-        "slug"
-    ] ;
+        'user_id',
+        'title',
+        'category',
+        'description',
+        'image',
+        'technologies',
+        'link',
+        'featured',
+        'slug',
+    ];
 
     protected $casts = [
-        "technologies" => "array",
-        "featured" => "boolean",
+        'technologies' => 'array',
+        'featured' => 'boolean',
     ];
 
     /**
