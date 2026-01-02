@@ -155,9 +155,6 @@ class PortfolioForm
                     ->directory('portfolios')
                     ->disk('public')
                     ->required()
-                    ->validationMessages([
-                        'required' => 'The image field is required.',
-                    ])
                     ->maxSize(2048),
 
                 TagsInput::make('technologies')
